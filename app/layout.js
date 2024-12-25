@@ -1,11 +1,25 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import Link from "next/link";
+import { Poppins, Inter } from 'next/font/google'
+
+const inter = Inter({
+  variable: '--font-inter',
+  subsets: ['latin'],
+})
+
+const PoppinsFont = Poppins({ 
+  variable: '--font-poppins', 
+  weight: '400',
+  subsets: ['latin'],
+});
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -19,10 +33,19 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="p-5">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className = {`${inter.className}  antialiased`}
       >
+        <nav className="flex gap-9 justify-center pb-4">
+          <li className="bg-inherit text-center  text-yellow-500 hover:text-red-400"> <Link href='/'>Home</Link> </li>
+          <li className="bg-inherit text-center  text-yellow-500 hover:text-red-400"> <Link href='/projects'>Projects</Link> </li>
+          <li className="bg-inherit text-center  text-yellow-500 hover:text-red-400"> <Link href='/blogs'>Blogs</Link> </li>
+          <li className="bg-inherit text-center  text-yellow-500 hover:text-red-400"> <Link href='/posts'>Posts</Link> </li>
+          <li className="bg-inherit text-center  text-yellow-500 hover:text-red-400"> <Link href='/about'>About us</Link> </li>
+          
+        </nav>
+
         {children}
       </body>
     </html>
